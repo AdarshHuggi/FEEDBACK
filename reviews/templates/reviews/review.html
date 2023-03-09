@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Your Reviews</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
+    </head>
+    <body>
+        <form action="/" method="POST">
+            {% csrf_token %}
+
+            <!it will repeat the html code for all fields in the forms> 
+            {% for field in form %}
+                <div class="form-control" {% if field.errors %} errors{% endif %}>
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <button type="submit">Send</button>
+
+        </form>
+    </body>
+</html>
